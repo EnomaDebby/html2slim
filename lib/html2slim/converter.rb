@@ -29,6 +29,8 @@ module HTML2Slim
       erb.gsub!(/<%\s*(end|}|end\s+-)\s*%>/, %(</ruby>))
       erb.gsub!(/<%-?(.+?)\s*-?%>/m){ %(<ruby code="#{$1.gsub(/"/, '&quot;')}"></ruby>) }
       @slim ||= Hpricot(erb).to_slim
+    rescue => e
+      puts e.message
     end
   end
 end
